@@ -1,6 +1,6 @@
 library(forecast)
-dat <- "https://github.com/DataBetter/Forecasting/blob/gh-pages/gdpq.csv"
-gdp <- read.csv(dat, header = TRUE)
+fol <- "https://raw.githubusercontent.com/DataBetter/Forecasting/gh-pages/"
+gdp <- read.csv(paste0(fol, "gdpq.csv"), header = TRUE)
  gdp_o <- ts(gdp[,1]/1000, start=1970, frequency=4)
  gdp_sa <- ts(gdp[,2]/1000, start=1970, frequency=4)
  gdp_gr <- ts((gdp_sa-lag(gdp_sa,-1))/lag(gdp_sa,-1)*100,  start=c(1970,2), frequency=4)
