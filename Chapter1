@@ -1,0 +1,15 @@
+library(ggplot2)
+library(quantmod)
+library(forecast)
+
+# Yahoo! Finance로터 종합주가지수 종가 데이터 가져오기 
+kospi <- getSymbols("^KS11", auto.assign = FALSE)[, 4]  
+
+fit1 <- rwf(EuStockMarkets[1:200,1],h=100)
+fit2 <- meanf(EuStockMarkets[1:200,1],h=100)
+accuracy(fit1)
+accuracy(fit2)
+accuracy(fit1,EuStockMarkets[201:300,1])
+accuracy(fit2,EuStockMarkets[201:300,1])
+plot(fit1)
+lines(EuStockMarkets[1:300,1])
