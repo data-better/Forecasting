@@ -1,5 +1,5 @@
 # Figure 2-3
-setwd("i:/ÀúÀÛ¹°/¿¹Ãø¹æ¹ý·Ð_¼öÁ¤/data")
+setwd("i:/ì €ìž‘ë¬¼/ì˜ˆì¸¡ë°©ë²•ë¡ _ìˆ˜ì •/data")
 #setwd("c:/work/data")
 
 # Figure 3-1
@@ -156,12 +156,12 @@ par(mfrow=c(1,1))
 
 
 ##################################################
-
 library(tsDyn)
 library(sm)
 
 TvarMat <- c(-1,-0.5,0.2, 1, 0.7, -0.2)
-sim<-setar.sim(B=TvarMat,lag=2, type="simul", n=154, nthresh=1, Thresh=0, starting=c(2.8,2.2))$serie
+sim<-setar.sim(B=TvarMat,lag=2, type="simul", n=154, nthresh=1, Thresh=0, starting=c(2.8,2.2))$serie
+
 plot(ts(sim,start=1970,frequency=4), xlab="", ylab="", col="steelblue")
 
 par(mfrow=c(1,2))
@@ -169,8 +169,10 @@ autopairs(sim, lag=1, type="regression")
 autopairs(sim, lag=2, type="regression")
 #########################################
 library(TSA)
+library(locfit)
 set.seed(5)
-tarsim <- tar.sim(n=176, Phi1=c(0, 0.7), Phi2=c(0, -0.9), p=1, d=1, sigma1=1, thd=0.5, sigma2=2)$y
+tarsim <- tar.sim(n=176, Phi1=c(0, 0.7), Phi2=c(0, -0.9), p=1, d=1, sigma1=1, thd=0.5, sigma2=2)$y
+
 plot(ts(tarsim,start=1970,frequency=4), xlab="", ylab="", col="steelblue")
 lagplot(tarsim)
 
@@ -184,7 +186,7 @@ autopairs(tarsim, lag=2, type="regression")
 ######################################
 # Figure 4-20
 library(quantmod)
-# Yahoo! Finance·ÎÅÍ Á¾ÇÕÁÖ°¡Áö¼ö Á¾°¡ µ¥ÀÌÅÍ °¡Á®¿À±â 
+# Yahoo! Financeë¡œí„° ì¢…í•©ì£¼ê°€ì§€ìˆ˜ ì¢…ê°€ ë°ì´í„° ê°€ì ¸ì˜¤ê¸° 
 kospi <- getSymbols("^KS11", auto.assign = FALSE)[,4]
 kospi_r <- dailyReturn(kospi)
 plot(kospi_r, main="")
@@ -193,7 +195,8 @@ plot(kospi_r^2, main="")
 library("fGarch")
 set.seed(5)
 spec = garchSpec(model = list(alpha = c(0.5, 0.4), beta = 0))
-garchsim= garchSim(spec, n = 176)
+garchsim= garchSim(spec, n = 176)
+
 plot(ts(garchsim,start=1970,frequency=4), xlab="", ylab="", col="steelblue")
 
 par(mfrow=c(2,1))
