@@ -1,5 +1,5 @@
 # Figure 2-3
-setwd("i:/ÀúÀÛ¹°/¿¹Ãø¹æ¹ı·Ğ_¼öÁ¤/data")
+setwd("i:/ì €ì‘ë¬¼/ì˜ˆì¸¡ë°©ë²•ë¡ _ìˆ˜ì •/data")
 #setwd("c:/work/data")
 library(tseries)
 
@@ -26,7 +26,7 @@ Tsay.test(ty)
 library(FinTS)
 library(TSA)
 library(quantmod)
-# Yahoo! Finance·ÎÅÍ Á¾ÇÕÁÖ°¡Áö¼ö Á¾°¡ µ¥ÀÌÅÍ °¡Á®¿À±â 
+# Yahoo! Financeë¡œí„° ì¢…í•©ì£¼ê°€ì§€ìˆ˜ ì¢…ê°€ ë°ì´í„° ê°€ì ¸ì˜¤ê¸° 
 kospi <- getSymbols("^KS11", auto.assign = FALSE)[,4]
 kospi_r <- dailyReturn(kospi)
 
@@ -51,7 +51,7 @@ pacf(diff(diff(log(gdp_o)),4), main="")
 fin <- ts(read.csv("kospi_n.csv", header=TRUE), start=1993, frequency=12)
 kospi <- fin[,1]
 er    <- fin[,2]
-plot(diff(log(kospi)), ylab="Á¾ÇÕÁÖ°¡Áö¼ö", xlab="", col="steelblue", main="")
+plot(diff(log(kospi)), ylab="ì¢…í•©ì£¼ê°€ì§€ìˆ˜", xlab="", col="steelblue", main="")
 
 
 par(mfrow=c(2,1))
@@ -68,13 +68,13 @@ summary(kospi_fit)
 auto.arima(log(kospi))
 ##########################################
 
-#°ú´ëÀûÇÕ
+#ê³¼ëŒ€ì í•©
 kospi_fit = arima(log(kospi), order=c(1,1,1))
 summary(kospi_fit)
 kospi_fit = arima(log(kospi), order=c(0,1,2))
 summary(kospi_fit)
 
-#ÀÜÂ÷
+#ì”ì°¨
 kospi_fit = arima(log(kospi), order=c(0,1,1))
 tsdiag(kospi_fit)
 
@@ -91,7 +91,7 @@ library(quantmod)
 getSymbols("^KS11",from="1997-01-03",to="2014-8-31")
  plot(KS11)
  kospi =KS11$ KS11.Close
- r.kospi =diff(log(kospi))
+ r.kospi = diff(log(kospi))
  r.kospi1 = r.kospi[2:length(r.kospi)] 
 
  plot(kospi, main="KOSPI")
@@ -128,7 +128,7 @@ hist(r.er1, breaks=100, freq=FALSE, main ="", xlab="")
 garch_er <- garchFit(~arma(0,1)+garch(1,1),r.er1)
 summary(garch_er)
 
-plot((fitted(garchFiitoutput)[,1])^2,type='l',ylab='Á¶°ÇºÎ ºĞ»ê',xlab='')
+plot((fitted(garchFiitoutput)[,1])^2,type='l',ylab='ì¡°ê±´ë¶€ ë¶„ì‚°',xlab='')
 
 
 
