@@ -125,16 +125,11 @@ par(mfrow=c(1,1))
 ###########################################################
 library(forecast)
 set.seed(1)
-m <- list(
-  arma=c(1,1,0,1,4,1,1),
-  model=list(
-    phi=0.5,
-    theta=c(-0.5,  0.0,  0.0,  -0.5, 0.25)
-  ),
-  sigma2=1,
-  x=NA
-)
-sarimasim <- ts(simulate.Arima(m, nsim=nn+21, future=FALSE),start=1970, frequency=4)
+nn = 176
+
+model <- Arima(ts(rnorm(nn),freq=4), order=c(1,1,1), seasonal=c(0,1,1),
+               fixed=c(phi=0.5, theta=-0.5, Theta=-0.5))
+sarimasim <- ts(simulate(model, nsim=nn),start=1970, frequency=4)
 
 plot(sarimasim, main="", xlab="", ylab="", col="steelblue")
 
