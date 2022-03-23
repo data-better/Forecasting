@@ -165,6 +165,7 @@ autopairs(sim, lag=1, type="regression")
 autopairs(sim, lag=2, type="regression")
 #########################################
 library(TSA)
+library(locfit)
 set.seed(5)
 tarsim <- tar.sim(n=176, Phi1=c(0, 0.7), Phi2=c(0, -0.9), p=1, d=1, sigma1=1, thd=0.5, sigma2=2)$y
 
