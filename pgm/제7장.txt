@@ -1,10 +1,10 @@
 setwd("i:/2014/data")
 #library(tseries)
 
-## µ¥ÀÌÅÍ ÀĞ±â ##
+## ë°ì´í„° ì½ê¸° ##
 
 library(quantmod)
-# Yahoo! Finance·ÎÅÍ Á¾ÇÕÁÖ°¡Áö¼ö Á¾°¡ µ¥ÀÌÅÍ °¡Á®¿À±â 
+# Yahoo! Financeë¡œí„° ì¢…í•©ì£¼ê°€ì§€ìˆ˜ ì¢…ê°€ ë°ì´í„° ê°€ì ¸ì˜¤ê¸° 
 kospi <- getSymbols("^KS11", auto.assign = FALSE)[,4]
 er    <- getSymbols("KRW=X", auto.assign = FALSE)[,4]
 
@@ -18,12 +18,12 @@ plot(fin1[,1], type="l", main="")
  lines(fin2[,2], col=2)
 
 # Fig 7-2
-plot(as.matrix(fin1), xlab="Á¾ÇÕÁÖ°¡Áö¼ö", ylab="¿ø/´Ş·¯ È¯À²")
+plot(as.matrix(fin1), xlab="ì¢…í•©ì£¼ê°€ì§€ìˆ˜", ylab="ì›/ë‹¬ëŸ¬ í™˜ìœ¨")
 
 cor(na.omit(as.matrix(fin1)))
 
 
-setwd("i:/ÀúÀÛ¹°/¿¹Ãø¹æ¹ı·Ğ_¼öÁ¤/data")
+setwd("i:/ì €ì‘ë¬¼/ì˜ˆì¸¡ë°©ë²•ë¡ _ìˆ˜ì •/data")
 #setwd("c:/work/data")
 
 # Figure 3-1
@@ -43,11 +43,11 @@ gdp_m <- ts(read.csv("gdp_m.csv", header = TRUE), start=1980, frequency=12)
  gdp_m_gr <- ts((gdpm-lag(gdpm,-1))/lag(gdpm,-1)*100,  start=c(1980,2), frequency=4)
  ipi_m_gr <- ts((ipim-lag(ipim,-1))/lag(ipim,-1)*100,  start=c(1980,2), frequency=4)
 
-plot(as.numeric(ipi_m_gr), as.numeric(gdp_m_gr), xlab="Á¦Á¶¾÷ »ê¾÷»ı»êÁö¼ö", ylab="Á¦Á¶¾÷ GDP")
+plot(as.numeric(ipi_m_gr), as.numeric(gdp_m_gr), xlab="ì œì¡°ì—… ì‚°ì—…ìƒì‚°ì§€ìˆ˜", ylab="ì œì¡°ì—… GDP")
 abline(lm(gdp_m_gr~ipi_m_gr), col=2)
 
-
-econ = ts(read.csv("gdpr.csv", header=TRUE), start=2000, frequency=4)
+gdpr = "https://raw.githubusercontent.com/data-better/Forecasting/gh-pages/data/gdpr.csv"
+econ = ts(read.csv(gdpr, header=TRUE), start=2000, frequency=4)
 gdp_r=econ[,4]
 ipi_r=econ[,5]
 sbi_r=econ[,6]
@@ -92,7 +92,7 @@ fcast <- forecast(fit, xreg=cbind( rep(mean(ipi_r[53:57], 4)), rep(mean(sbi_r[53
 plot(fcast, main="")
 
 fit1 <- Arima(gdp_r, xreg=cbind(ipi_r,sbi_r), order=c(1,0,0))
-tsdisplay(arima.errors(fit1))
+tsdisplay(residuals(fit1))
 Box.test(residuals(fit1), type="Ljung")
 
 ########################################################################
