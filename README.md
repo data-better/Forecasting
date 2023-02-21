@@ -4,7 +4,7 @@
 ### 데이터는 data_new 폴더에
 
 #### 2015년 프로그램과 데이터는 각각 pgm, data에
-#### 2023년 예측방법론 프로그램 관련 RMarkdown 파일은 data-better/Forecasting_New dp 
+#### 2023년 예측방법론 프로그램 관련 RMarkdown 파일은 github.com/data-better/Forecasting_New 참조
 
 우리의 의사결정은 모두 앞을 내다보고 하는 것이기 때문에 미래를 예측할 수밖에 없다.
 예측방법은 크게 주관적 예측과 통계모형을 이용하는 객관적 예측으로 구분할 수 있다.
